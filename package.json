@@ -12,7 +12,7 @@
     "test:int": "mocha test/int_*",
     "test:unit": "mocha test/unit_*",
     "test:coverage": "istanbul cover _mocha",
-    "npm:publish": "[ -z \"$(git status --porcelain)\" ] && npm version patch && git push && git push --tags && npm publish"
+    "npm:publish": "set -uex && npm run test:coverage && git commit coverage/lcov.info -m \"release coverage report\" && [ -z \"$(git status --porcelain)\" ] && npm version patch && git push && git push --tags && npm publish"
   },
   "keywords": [
     "error",
