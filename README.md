@@ -4,14 +4,14 @@ Standard set of custom Error classes including a base class `ExtendedError` to c
 
 ## Usage
 
-```
-npm install --save deployable-errors
-```
+    npm install --save deployable-errors
 
 Then require
 
 ```javascript 
+
 const {ValidationError, KeyError, HttpError, ExtendedError} = require('deployable-errors')
+
 ```
 
 ## `ExtendedError`
@@ -19,12 +19,14 @@ const {ValidationError, KeyError, HttpError, ExtendedError} = require('deployabl
 Base class used to extend errors
 
 
-```javascript
+``` javascript
+
 const {ExtendedError} = require('deployable-errors')
 
 class MyError extends ExtendedError {}
 
 let err = new MyError('Here\'s a new error!')
+
 ```
 
 
@@ -32,16 +34,25 @@ let err = new MyError('Here\'s a new error!')
 
 Place to store a human readable error message.
 
-    let err = new MyError('foo missing bar variable.', { simple: "There was problem with foo" })
+``` javascript
 
+    let err = new MyError('foo missing bar variable.', { simple: "There was problem with foo" })
+    
+    console.log(err.simple)
+
+```
 
 ## `ValidationError`
 
 An error to throw when something simple goes wrong to be handled with output to the user. 
 
+``` javascript
+
     const {ValidationError} = require('deployable-errors')
 
     let err = new ValidationError('Store should not be a number', { field: 'store', value: 9 })
+
+```
 
 The error holds the `.value` and `.field` properties for later inspection.
 
@@ -79,13 +90,13 @@ Something generic to throw when a property is missing (Rubyish)
 
 ``` javascript
 
-    const {KeyError} = require('deployable-errors')
+const {KeyError} = require('deployable-errors')
   
-    let store = { one: 1, two: 2 }
-    ley key = 'three'
-    let number = store[three]
-    if (!number) throw new KeyError('Number not found', { key: key })
-    return number
+let store = { one: 1, two: 2 }
+ley key = 'three'
+let number = store[three]
+if (!number) throw new KeyError('Number not found', { key: key })
+return number
 
 ```
 
