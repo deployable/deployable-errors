@@ -4,21 +4,27 @@ Standard set of custom Error classes including a base class `ExtendedError` to c
 
 ## Usage
 
-    npm install --save deployable-errors
+```
+npm install --save deployable-errors
+```
 
 Then require
- 
-    const {ValidationError, KeyError, HttpError, ExtendedError} = require('deployable-errors')
+
+```javascript 
+const {ValidationError, KeyError, HttpError, ExtendedError} = require('deployable-errors')
+```
 
 ## `ExtendedError`
 
 Base class used to extend errors
 
-    const {ExtendedError} = require('deployable-errors')
+```javascript
+const {ExtendedError} = require('deployable-errors')
 
-    class MyError extends ExtendedError {}
+class MyError extends ExtendedError {}
 
-    let err = new MyError('Here\'s a new error!')
+let err = new MyError('Here\'s a new error!')
+```
 
 ### `.simple`
 
