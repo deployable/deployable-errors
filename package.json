@@ -1,6 +1,6 @@
 {
   "name": "deployable-errors",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Custom Error classes",
   "repository": {
     "type": "git",
@@ -19,8 +19,7 @@
   ],
   "author": "matt at deployable.co",
   "license": "MIT",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "chai": "^3.5.0",
     "coffee-script": "~1.12.0",
