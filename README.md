@@ -1,6 +1,6 @@
 # deployable-errors
 
-Store for custom errors.
+Standard set of custom Error classes including a base class `ExtendedError` to create new Error classe from. 
 
 ## Usage
 
