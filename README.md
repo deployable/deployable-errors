@@ -36,9 +36,9 @@ Place to store a human readable error message.
 
 ``` javascript
 
-    let err = new MyError('foo missing bar variable.', { simple: "There was problem with foo" })
-    
-    console.log(err.simple)
+let err = new MyError('foo missing bar variable.', { simple: "There was problem with foo" })
+   
+console.log(err.simple)
 
 ```
 
@@ -48,9 +48,9 @@ An error to throw when something simple goes wrong to be handled with output to 
 
 ``` javascript
 
-    const {ValidationError} = require('deployable-errors')
+const {ValidationError} = require('deployable-errors')
 
-    let err = new ValidationError('Store should not be a number', { field: 'store', value: 9 })
+let err = new ValidationError('Store should not be a number', { field: 'store', value: 9 })
 
 ```
 
