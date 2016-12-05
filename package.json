@@ -12,6 +12,7 @@
     "test:int": "mocha test/int_*",
     "test:unit": "mocha test/unit_*",
     "test:coverage": "istanbul cover _mocha"
+    "npm:publish": "npm version patch && git push && git push --tags && npm publish"
   },
   "keywords": [
     "error",
