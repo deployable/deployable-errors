@@ -96,7 +96,7 @@ describe 'Unit::Error::Dply', ->
     it 'should create an error', ->
       err = new Errors.KeyError('msg', {key:'akey'})
       expect( err ).to.be.an.instanceOf Error
-      expect( err.message ).to.equal 'msg'
+      expect( err.message ).to.equal 'msg - akey'
       expect( err.name ).to.equal 'KeyError'
       expect( err.stack ).to.be.ok
       expect( err.key ).to.equal 'akey'
