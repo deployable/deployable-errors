@@ -3,7 +3,6 @@ Errors = require '../'
 
 describe 'Unit::Error::Dply', ->
 
-
   describe 'ExtendedError', ()->
 
     it 'should have an ExtendedError', ()->
@@ -110,4 +109,20 @@ describe 'Unit::Error::Dply', ->
       expect( err.stack ).to.be.ok
       expect( err.key ).to.be.undefined
       expect( String(err) ).to.equal 'KeyError: msg'
+
+
+  describe 'NotFoundError', ()->
+
+    it 'should have a NotFoundError', ()->
+      expect( Errors.NotFoundError ).to.be.ok
+
+    it 'should create an error', ->
+      err = new Errors.NotFoundError('msg', {url:'/aurl'})
+      expect( err ).to.be.an.instanceOf Error
+      expect( err.message ).to.equal 'msg'
+      expect( err.name ).to.equal 'NotFoundError'
+      expect( err.stack ).to.be.ok
+      expect( err.url ).to.equal '/aurl'
+      expect( err.status ).to.equal 404
+      expect( String(err) ).to.equal 'NotFoundError: msg'
 
