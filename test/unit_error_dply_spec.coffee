@@ -115,6 +115,10 @@ describe 'Unit::Error::Dply', ->
       expect( err.key ).to.be.undefined
       expect( String(err) ).to.equal 'KeyError: msg'
 
+    it 'should create an error with different status', ->
+      err = new Errors.KeyError('msg', { status: 401 })
+      expect( err.status ).to.equal( 401 )
+
 
   describe 'NotFoundError', ()->
 
