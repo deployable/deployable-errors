@@ -28,6 +28,11 @@ describe 'Unit::Error::Dply', ->
       expect( json ).to.have.property('name').and.equal('ExtendedError')
       expect( json ).to.have.property('stack').and.match(/ExtendedError: msg\n/)
 
+    it 'should exclude stack in toResponse()', ->
+      err = new Errors.ExtendedError('msg', {simple: 'simple'})
+      json = err.toResponse()
+      expect( json ).to.have.all.keys ['message', 'simple', 'name']
+
 
   describe 'ValidationError', ()->
 
