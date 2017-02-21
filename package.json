@@ -1,6 +1,6 @@
 {
   "name": "deployable-errors",
-  "version": "0.8.0",
+  "version": "0.9.0-0",
   "description": "Custom Error classes",
   "repository": {
     "type": "git",
@@ -11,9 +11,9 @@
     "test": "mocha",
     "test:int": "mocha test/int_*",
     "test:unit": "mocha test/unit_*",
-    "test:coverage": "istanbul cover _mocha",
-    "npm:publish": "set -uex; npm run test:coverage && [ -z \"$(git status --porcelain)\" ] && npm version patch && git push && git push --tags && npm publish",
-    "npm:pubtest": "set -uex; npm run test; npm version prerelease; npm publish --tag testing"
+    "test:coverage": "istanbul cover _mocha && istanbul check-coverage",
+    "release:patch": "set -uex; npm run test:coverage && npm version patch && git push && npm publish && git push --tags",
+    "release:test": "set -uex; npm run test; npm version prerelease; npm publish --tag testing"
   },
   "keywords": [
     "error",

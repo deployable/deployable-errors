@@ -33,6 +33,25 @@ describe 'Unit::Error::Dply', ->
       json = err.toResponse()
       expect( json ).to.have.all.keys ['message', 'simple', 'name']
 
+    describe 'env development', ->
+ 
+      original_node_env = null
+
+      before 'set NODE_ENV', ->
+        original_node_env = process.env.NODE_ENV
+        process.env.NODE_ENV = 'development'
+
+      after 'reset NODE_ENV', ->
+        if original_node_env
+          process.env.NODE_ENV = original_node_env
+        else
+          delete process.env.NODE_ENV
+ 
+      it 'should include stack in toResponse()', ->
+        err = new Errors.ExtendedError('msg', {simple: 'simple'})
+        json = err.toResponse()
+        expect( json ).to.have.all.keys ['message', 'simple', 'name', 'stack']
+
 
   describe 'ValidationError', ()->
 
@@ -46,16 +65,34 @@ describe 'Unit::Error::Dply', ->
       expect( err.name ).to.equal 'ValidationError'
       expect( err.status ).to.equal 400
       expect( err.stack ).to.be.ok
-    
-    it 'should remove stacks in prod', ->
-      old_env = process.env.NODE_ENV
-      process.env.NODE_ENV = 'production'
-      err = new Errors.ValidationError('msg')
-      json = err.toJSON()
-      expect( json.message ).to.equal 'msg'
-      expect( json ).to.not.have.property 'stack'
-      process.env.NODE_ENV = old_env
 
+    
+    describe 'NODE_ENV', ->
+
+      original_node_env = null
+
+      before 'set NODE_ENV', ->
+        original_node_env = process.env.NODE_ENV
+
+      after 'reset NODE_ENV', ->
+        if original_node_env
+          process.env.NODE_ENV = original_node_env
+        else
+          delete process.env.NODE_ENV
+ 
+      it 'should remove stacks in prod', ->
+        process.env.NODE_ENV = 'production'
+        err = new Errors.ValidationError('msg')
+        json = err.toJSON()
+        expect( json.message ).to.equal 'msg'
+        expect( json ).to.not.have.property 'stack'
+
+      it 'should include stacks in elsewhere', ->
+        process.env.NODE_ENV = 'development'
+        err = new Errors.ValidationError('msg')
+        json = err.toJSON()
+        expect( json.message ).to.equal 'msg'
+        expect( json ).to.have.property 'stack'
 
   describe 'HttpError', ()->
 
@@ -68,6 +105,7 @@ describe 'Unit::Error::Dply', ->
       expect( err.message ).to.equal 'msg'
       expect( err.name ).to.equal 'HttpError'
       expect( err.status ).to.equal 400
+      expect( err.statusCode ).to.equal 400
       expect( err.stack ).to.be.ok
 
     it 'should create an error', ->
@@ -118,12 +156,13 @@ describe 'Unit::Error::Dply', ->
     it 'should create an error with different status', ->
       err = new Errors.KeyError('msg', { status: 401 })
       expect( err.status ).to.equal( 401 )
+      expect( err.statusCode ).to.equal( 401 )
 
 
   describe 'NotFoundError', ()->
 
     it 'should have a NotFoundError', ()->
-      expect( Errors.NotFoundError ).to.be.ok
+      expect( new Errors.NotFoundError() ).to.be.ok
 
     it 'should create an error', ->
       err = new Errors.NotFoundError('msg', {url:'/aurl'})
@@ -133,5 +172,6 @@ describe 'Unit::Error::Dply', ->
       expect( err.stack ).to.be.ok
       expect( err.url ).to.equal '/aurl'
       expect( err.status ).to.equal 404
+      expect( err.statusCode ).to.equal 404
       expect( String(err) ).to.equal 'NotFoundError: msg'
 
