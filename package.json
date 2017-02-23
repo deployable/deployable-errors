@@ -1,6 +1,6 @@
 {
   "name": "deployable-errors",
-  "version": "0.9.0",
+  "version": "0.9.1-0",
   "description": "Custom Error classes",
   "repository": {
     "type": "git",
