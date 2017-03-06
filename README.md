@@ -1,16 +1,18 @@
-# deployable-errors
+# @deployable/errors
 
-Standard set of custom Error classes including a base class `ExtendedError` to create new Error classe from. 
+Standard set of custom Error classes including a base class `ExtendedError` to create any new Error classes from. 
 
 ## Usage
 
-    npm install --save deployable-errors
+    npm install --save @deployable/errors
+   
+    yarn add @deployable/errors
 
 Then require
 
 ```javascript 
 
-const {ValidationError, KeyError, HttpError, ExtendedError} = require('deployable-errors')
+const {ValidationError, KeyError, HttpError, ExtendedError} = require('@deployable/errors')
 
 ```
 

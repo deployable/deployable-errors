@@ -1,5 +1,5 @@
 {
-  "name": "deployable-errors",
+  "name": "@deployable/errors",
   "version": "0.9.1",
   "description": "Custom Error classes",
   "repository": {
@@ -8,18 +8,19 @@
   },
   "main": "lib/errors.js",
   "scripts": {
+    "install": "node install.js",
     "test": "mocha",
     "test:int": "mocha test/int_*",
     "test:unit": "mocha test/unit_*",
     "test:coverage": "istanbul cover _mocha && istanbul check-coverage",
-    "release:patch": "set -uex; npm run test:coverage && npm version patch && git push && npm publish && git push --tags",
-    "release:test": "set -uex; npm run test; npm version prerelease; npm publish --tag testing"
+    "release:patch": "set -uex; yarn run test:coverage; npm version patch; git push; npm publish --access public; git push --tags",
+    "release:test": "set -uex; yarn run test; npm version prerelease; npm publish --tag testing --access public"
   },
   "keywords": [
     "error",
     "deployable"
   ],
-  "author": "matt at deployable.co",
+  "author": "Matt Hoyle <code at deployable.co",
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
