@@ -13,7 +13,7 @@
     "test:int": "mocha test/int_*",
     "test:unit": "mocha test/unit_*",
     "test:coverage": "istanbul cover _mocha && istanbul check-coverage",
-    "release:patch": "set -uex; yarn run test:coverage; npm version patch; git push; npm publish --access public; git push --tags",
+    "release:patch": "set -uex; rm -rf node_modules; yarn; yarn run test:coverage; npm version patch; git push; npm publish --access public; git push --tags",
     "release:test": "set -uex; yarn run test; npm version prerelease; npm publish --tag testing --access public"
   },
   "keywords": [
