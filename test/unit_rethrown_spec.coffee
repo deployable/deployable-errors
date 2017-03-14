@@ -51,3 +51,6 @@ describe 'Unit::Deployable::Error', ->
       expect( lines ).to.include 'Error: Original error message'
       expect( lines.length ).to.equal( ori_line_count + 1 )
 
+    it 'should fail without an error', ->
+      fn = ()-> new RethrownError('BadRethrown')
+      expect( fn ).to.throw(/RethrownError requires a message and error/)

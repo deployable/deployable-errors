@@ -33,6 +33,13 @@ describe 'Unit::Error::Dply', ->
       json = err.toResponse()
       expect( json ).to.have.all.keys ['message', 'simple', 'name']
 
+    it 'should set and get a statusCode', ()->
+      err = new Errors.ExtendedError('msg')
+      expect( err.statusCode ).to.be.undefined
+      expect( err.statusCode = 401 ).to.be.ok
+      expect( err.statusCode = 401 ).to.be.ok
+      expect( err.status = 401 ).to.be.ok
+
     describe 'env development', ->
  
       original_node_env = null
@@ -93,6 +100,7 @@ describe 'Unit::Error::Dply', ->
         json = err.toJSON()
         expect( json.message ).to.equal 'msg'
         expect( json ).to.have.property 'stack'
+
 
   describe 'HttpError', ()->
 
