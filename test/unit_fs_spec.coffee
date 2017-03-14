@@ -10,11 +10,13 @@ describe 'Unit::Deployable::Error', ->
 
     it 'should create an error', ->
       ori = new Error('Original error message')
+      ori.code = 'PIPE'
       err = new FsError('fsmsg', ori)
       expect( err ).to.be.an.instanceOf Error
       expect( err.message ).to.equal 'fsmsg'
       expect( err.name ).to.equal 'FsError'
       expect( err.stack ).to.be.ok
+      expect( err.code ).to.equal 'PIPE'
 
     it 'should fail to create one without the error argument', ->
       fn = ()-> new FsError('fsmsg')
