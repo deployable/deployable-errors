@@ -23,7 +23,7 @@ Base class used to extend errors
 
 ``` javascript
 
-const {ExtendedError} = require('deployable-errors')
+const {ExtendedError} = require('@deployable/errors')
 
 class MyError extends ExtendedError {}
 
@@ -50,7 +50,7 @@ An error to throw when something simple goes wrong to be handled with output to 
 
 ``` javascript
 
-const {ValidationError} = require('deployable-errors')
+const {ValidationError} = require('@deployable/errors')
 
 let err = new ValidationError('Store should not be a number', { field: 'store', value: 9 })
 
@@ -74,7 +74,7 @@ It can include a standard error message if none is provided.
 
 ``` javascript
 
-const {HttpError} = require('deployable-errors')
+const {HttpError} = require('@deployable/errors')
 
 let err = HttpError.create(403,'You are not allowed to access /admin')
 
@@ -92,7 +92,7 @@ Something generic to throw when a property is missing (Rubyish)
 
 ``` javascript
 
-const {KeyError} = require('deployable-errors')
+const {KeyError} = require('@deployable/errors')
   
 let store = { one: 1, two: 2 }
 ley key = 'three'
