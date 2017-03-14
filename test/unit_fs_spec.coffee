@@ -29,7 +29,9 @@ describe 'Unit::Deployable::Error', ->
       expect( FsNotFoundError ).to.be.ok
 
     it 'should create an FsNotFoundError instance', ()->
-      expect( new FsNotFoundError('a',{}) ).to.be.an.instanceof(FsNotFoundError)
+      err = new FsNotFoundError('a', {code:'ENOENT'})
+      expect( err ).to.be.an.instanceof(FsNotFoundError)
+      expect( err.code ).to.equal('ENOENT')
 
 
   describe 'FsError#create', ()->
