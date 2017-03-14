@@ -2,3 +2,5 @@ node_modules/
 coverage/
 npm-debug.log
 deployable-errors-*.tgz
+*.swp
+yarn-error.log
